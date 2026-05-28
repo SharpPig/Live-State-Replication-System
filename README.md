@@ -1,4 +1,4 @@
-# Live Sports State Replication System
+# Live State Replication System
 
 ### You can open example_run.pdf to see it in action
 
@@ -133,7 +133,7 @@ Actions: `snapshot` (initial sync), `put` (create/update), `delete` (remove).
 
 **Eventual consistency.** Replicas may lag behind core by the network round-trip time. In practice on localhost this is <1ms, but may be longer on production networks. Each entry carries a timestamp so the caller knows exactly how stale the data is.
 
-There is no read-writes guarantee across services, but for this application I found it to be suitable. If you write to core and immediately read from a replica (within the network round-trip time), you might miss the core write. This is the right trade-off for this read system like a sportsbook where:
+There is no read-writes guarantee across services, but for this application I found it to be suitable. If you write to core and immediately read from a replica (within the network round-trip time), you might miss the core write. This is the right trade-off for this read system like a sbook where:
 - Odds and scores update frequently but millisecond staleness is acceptable
 - Read throughput matters far more than perfect latency consistency
 
